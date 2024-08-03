@@ -37,8 +37,14 @@ jobs:
         run: |
           mvn clean install
 
-      - name: Upload artifact
+      - name: Upload JAR artifact
         uses: actions/upload-artifact@v3
         with:
-          name: my-app-build
+          name: jar-file-${{ matrix.java-version }}
           path: target/*.jar
+
+      - name: Upload Maven artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: maven-artifacts-${{ matrix.java-version }}
+          path: target/maven-repo/
